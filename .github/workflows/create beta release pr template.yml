@@ -2,8 +2,6 @@ on:
   pull_request:
     types:
       - opened
-    branches:
-      - 'beta'
 jobs:
   Pull-request-was-created:
     permissions:
