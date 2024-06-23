@@ -17,5 +17,5 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         base-branch-regex: '.*'
         body-template: |
-          - [] 버저닝을 했습니다.
+          - [ ] 버저닝을 했습니다.
 
