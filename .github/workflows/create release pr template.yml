@@ -9,5 +9,10 @@ jobs:
     if:  startsWith(github.head_ref, 'releases/')
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo The PR was created
+    - uses: tzkhan/pr-update-action@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        base-branch-regex: '.*'
+        body-template: |
+          - [] 버저닝을 했습니다.
+
