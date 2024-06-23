@@ -1,0 +1,12 @@
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'releases/**'
+jobs:
+  Pull-request-was-created:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo The PR was created
