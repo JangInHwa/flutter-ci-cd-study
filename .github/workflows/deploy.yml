@@ -1,0 +1,13 @@
+on:
+  release:
+    types: [published]
+jobs:
+  deploy-beta:
+    runs-on: ubuntu-latest
+    if: github.event.release.prereleased == true
+    uses: JangInHwa/flutter-ci-cd-study/.github/workflows/deploy beta.yml@main
+  deploy-prod:  
+    runs-on: ubuntu-latest
+    if: github.event.release.prereleased == false
+    uses: JangInHwa/flutter-ci-cd-study/.github/workflows/deploy prod.yml@main
+

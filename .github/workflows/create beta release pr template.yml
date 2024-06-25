@@ -1,7 +1,9 @@
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
+    branches:
+      - 'main'
 jobs:
   Pull-request-was-created:
     permissions:
@@ -15,5 +17,12 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         base-branch-regex: '.*'
         body-template: |
-          - [ ] 버저닝을 했습니다.
+          # 버저닝과 changelog 가이드라인
+
+          1. pubspec.yaml파일에 릴리즈할 버전 정보를 입력해주세요.
+          `version: *.*.*+*`
+
+          2. merge후 head commit으로 github release draft가 자동 생성됩니다. release draft에 change log를 작성하고 publish하면 스토어로 배포가 진행됩니다.
+          
+          - [ ] 버저닝을 완료했습니다.
 
