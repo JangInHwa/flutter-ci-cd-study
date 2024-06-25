@@ -1,11 +1,11 @@
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
-      - 'main'
+      - 'release-beta/**'
+    paths:
+      - 'pubspec.yaml'
 jobs:
-  Pull-request-was-created:
+  create-release-note:
     permissions:
       contents: write
     runs-on: ubuntu-latest
