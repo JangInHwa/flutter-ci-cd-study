@@ -22,9 +22,7 @@ jobs:
           1. pubspec.yaml파일에 릴리즈할 버전 정보를 입력해주세요.
           `version: *.*.*+*`
 
-          2. pubspec.yaml의 커밋 메시지는 이번 릴리즈의 changelog가 됩니다.
-          testflight와 playstore beta의 changelog에 올라가니 신중히 작성해주세요.
-          merge 후 자동으로 Github tag와 release가 생성되며 스토어 배포 작업이 시작됩니다.
-
-          - [ ] 버저닝과 changelog를 위한 커밋메시지 작성을 완료했습니다.
+          2. merge후 head commit으로 github release draft가 자동 생성됩니다. release draft에 change log를 작성하고 publish하면 스토어로 배포가 진행됩니다.
+          
+          - [ ] 버저닝을 완료했습니다.
 
