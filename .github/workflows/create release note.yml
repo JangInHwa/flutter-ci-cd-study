@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - 'release-beta/**'
+      - 'release/**'
     paths:
       - 'pubspec.yaml'
 jobs:
@@ -25,7 +25,9 @@ jobs:
         with:
           tag_name: ${{ steps.yq.outputs.result }}
           release_name: Release ${{ steps.yq.outputs.result }}
-          body: ${{ github.event.commits[1].message }}
-          draft: false
+          body: 여기에 릴리즈 노트 작성(markdown 문법을 사용하지 말고 plain text로 작성해주세요.)
+          draft: true
           prerelease: false
+      - name: echo release url
+        run: echo ${{steps.create_release.outputs.html_url}}
 
