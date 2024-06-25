@@ -6,6 +6,8 @@ on:
       - 'main'
 jobs:
   Pull-request-was-created:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Cloning repository...
@@ -23,10 +25,8 @@ jobs:
         with:
           tag_name: ${{ steps.yq.outputs.result }}
           release_name: Release ${{ steps.yq.outputs.result }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
-          draft: false
+          body: 여기에 릴리즈 노트 작성
+            markdown 문법을 사용하지 말고 plain text로 작성해주세요.
+          draft: true
           prerelease: false
 
