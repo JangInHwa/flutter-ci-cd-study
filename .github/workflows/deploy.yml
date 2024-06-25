@@ -2,11 +2,12 @@ on:
   release:
     types: [published]
 jobs:
-  build:
+  deploy-beta:
     runs-on: ubuntu-latest
-    steps:
-      - if: endsWith(github.event.release.tag_name, 'beta')
-        uses: JangInHwa/flutter-ci-cd-study/.github/workflows/deploy beta.yml@main
-      - if: ! ${{endsWith(github.event.release.tag_name, 'beta')}}
-        uses: JangInHwa/flutter-ci-cd-study/.github/workflows/deploy prod.yml@main
+    if: github.event.release.prereleased == true
+    uses: JangInHwa/flutter-ci-cd-study/.github/workflows/deploy beta.yml@main
+  deploy-prod:  
+    runs-on: ubuntu-latest
+    if: github.event.release.prereleased == false
+    uses: JangInHwa/flutter-ci-cd-study/.github/workflows/deploy prod.yml@main
 
