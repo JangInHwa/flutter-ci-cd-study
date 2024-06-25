@@ -25,10 +25,7 @@ jobs:
         with:
           tag_name: ${{ steps.yq.outputs.result }}
           release_name: Release ${{ steps.yq.outputs.result }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+          body: ${{ github.event.commits[1].message }}
           draft: false
           prerelease: false
 
