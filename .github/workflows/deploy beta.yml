@@ -6,6 +6,4 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Build ios
-        uses: JangInHwa/flutter-ci-cd-study/.github/workflows/build ios.yml@main
+    uses: JangInHwa/flutter-ci-cd-study/.github/workflows/build ios.yml@main
