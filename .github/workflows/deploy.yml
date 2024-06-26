@@ -1,0 +1,30 @@
+name: Deploying
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+jobs:
+  deploying-beta:
+    runs-on: ubuntu-latest
+    if: github.event.release.prereleased == true
+    steps:
+      - run: echo 'deploying beta...'
+  deploying-prod:
+    runs-on: ubuntu-latest
+    if: github.event.release.prereleased == false
+    steps:
+      - run: echo 'deploying prod...'
+  deploy-testflight:
+    needs: deploying-beta
+    uses: ./.github/workflows/deploy testflight.yml
+  deploy-playstore-beta:
+    needs: deploying-beta
+    uses: ./.github/workflows/deploy playstore beta.yml
+  deploy-appstore:
+    needs: deploying-prod
+    uses : ./.github/workflows/deploy appstore.yml
+  deploy-playstore:
+    needs: deploying-prod
+    uses: ./.github/workflows/deploy playstore.yml
+
