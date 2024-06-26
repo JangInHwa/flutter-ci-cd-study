@@ -1,0 +1,46 @@
+name: Deploying
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+jobs:
+  deploying-beta:
+    runs-on: ubuntu-latest
+    if: github.event.release.prereleased == true
+    steps:
+      - run: echo 'deploying beta...'
+  deploying-prod:
+    runs-on: ubuntu-latest
+    if: github.event.release.prereleased == false
+    steps:
+      - run: echo 'deploying prod...'
+  release-testflight:
+    needs: deploying-beta
+    runs-on: macos-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Install flutter sdk
+        uses: subosito/flutter-action@v2.16.0
+        with:
+          channel: stable
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter build ios --release --no-codesign
+  release-appstore:
+    needs: deploying-prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Install flutter sdk
+        uses: subosito/flutter-action@v2.16.0
+        with:
+          channel: stable
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter build ios --release --no-codesign
+
