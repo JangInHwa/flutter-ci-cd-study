@@ -3,7 +3,7 @@ on:
     types:
       - opened
     branches:
-      - 'main'
+      - 'beta'
 jobs:
   Pull-request-was-created:
     permissions:
