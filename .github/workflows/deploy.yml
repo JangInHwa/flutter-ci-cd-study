@@ -15,32 +15,16 @@ jobs:
     if: github.event.release.prereleased == false
     steps:
       - run: echo 'deploying prod...'
-  release-testflight:
+  deploy-testflight:
     needs: deploying-beta
-    runs-on: macos-latest
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-      - name: Install flutter sdk
-        uses: subosito/flutter-action@v2.16.0
-        with:
-          channel: stable
-          cache: true
-      - run: flutter --version
-      - run: flutter pub get
-      - run: flutter build ios --release --no-codesign
-  release-appstore:
+    uses: ./.github/workflows/deploy testflight.yml
+  deploy-playstore-beta:
+    needs: deploying-beta
+    uses: ./.github/workflows/deploy playstore beta.yml
+  deploy-appstore:
     needs: deploying-prod
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-      - name: Install flutter sdk
-        uses: subosito/flutter-action@v2.16.0
-        with:
-          channel: stable
-          cache: true
-      - run: flutter --version
-      - run: flutter pub get
-      - run: flutter build ios --release --no-codesign
+    uses : ./.github/workflows/deploy appstore.yml
+  deploy-playstore:
+    needs: deploying-prod
+    uses: ./.github/workflows/deploy playstore.yml
 
