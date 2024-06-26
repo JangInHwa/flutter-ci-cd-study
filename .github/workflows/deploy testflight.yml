@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy-testflight:
-    name: Deplay Testflight
+    name: Deploy Testflight
     runs-on: macos-latest
     steps:
       - name: Clone repository

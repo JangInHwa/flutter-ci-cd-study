@@ -8,29 +8,29 @@ jobs:
   deploying-beta:
     name: Deploying Beta...
     runs-on: ubuntu-latest
-    if: github.event.release.prereleased == true
+    if: github.event.release.prereleased == false
     steps:
       - run: echo 'deploying beta...'
   deploying-prod:
     name: Deploying Prod...
     runs-on: ubuntu-latest
-    if: github.event.release.prereleased == false
+    if: github.event.release.prereleased == true
     steps:
       - run: echo 'deploying prod...'
   deploy-testflight:
-    name: Deply Testflight
+    name: Deploy Testflight
     needs: deploying-beta
     uses: ./.github/workflows/deploy testflight.yml
   deploy-playstore-beta:
-    name: Deply Playstore Beta
+    name: Deploy Playstore Beta
     needs: deploying-beta
     uses: ./.github/workflows/deploy playstore beta.yml
   deploy-appstore:
-    name: Deply Appstore
+    name: Deploy Appstore
     needs: deploying-prod
     uses : ./.github/workflows/deploy appstore.yml
   deploy-playstore:
-    name: Deply Playstore
+    name: Deploy Playstore
     needs: deploying-prod
     uses: ./.github/workflows/deploy playstore.yml
 

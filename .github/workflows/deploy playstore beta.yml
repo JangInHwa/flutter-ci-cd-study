@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy-playstore-beta:
-    name: Deplay Playstore Beta
+    name: Deploy Playstore Beta
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
