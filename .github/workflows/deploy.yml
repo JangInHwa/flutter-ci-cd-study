@@ -8,17 +8,17 @@ jobs:
   env-info:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{github.event.release.target_commitish}} ${{github.ref_name}} ${{github.event.release.tag_name}}
+      - run: echo ${{github.event.release}}
   deploying-beta:
     name: Deploying Beta...
     runs-on: ubuntu-latest
-    if: github.event.release.prereleased == false
+    if: contains(github.event.release.tag_name, 'beta')
     steps:
       - run: echo 'deploying beta...'
   deploying-prod:
     name: Deploying Prod...
     runs-on: ubuntu-latest
-    if: github.event.release.prereleased == true
+    if: !contains(github.event.release.tag_name, 'beta')
     steps:
       - run: echo 'deploying prod...'
   deploy-testflight:
