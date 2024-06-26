@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  release-testflight:
+  deploy-playstore:
+    name: Deplay Playstore
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository

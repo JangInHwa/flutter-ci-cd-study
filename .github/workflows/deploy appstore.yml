@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  release-testflight:
+  deploy-appstore:
+    name: Deplay Appstore
     runs-on: macos-latest
     steps:
       - name: Clone repository

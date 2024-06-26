@@ -1,11 +1,12 @@
-name: Deploy Test Flight
+name: Deploy Testflight
 
 on:
   workflow_call:
   workflow_dispatch:
 
 jobs:
-  release-testflight:
+  deploy-testflight:
+    name: Deplay Testflight
     runs-on: macos-latest
     steps:
       - name: Clone repository
