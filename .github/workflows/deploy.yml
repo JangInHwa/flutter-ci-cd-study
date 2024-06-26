@@ -18,7 +18,7 @@ jobs:
   deploying-prod:
     name: Deploying Prod...
     runs-on: ubuntu-latest
-    if: !contains(github.event.release.tag_name, 'beta')
+    if: contains(github.event.release.tag_name, 'beta') == false
     steps:
       - run: echo 'deploying prod...'
   deploy-testflight:
